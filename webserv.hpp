@@ -4,7 +4,7 @@
 
 
 //****************FUNCIONES UNISTD****************
-#include <unistd.h>
+# include <unistd.h>
 //int execve(const char *pathname, char *const argv[], char *const envp[]);
 //int dup(int oldfd);
 //int dup2(int oldfd, int newfd);
@@ -13,7 +13,7 @@
 
 
 //****************FUNCIONES STRING****************
-#include <string.h>
+# include <string.h>
 /*
  * strerror: Devuelve una cadena de texto que describe el error basado en el valor de errno.
  */
@@ -21,7 +21,7 @@
 
 
 //****************FUNCIONES NETDB****************
-#include <netdb.h>
+# include <netdb.h>
 
 /*
  * gai_strerror: Devuelve una cadena de texto que describe errores de getaddrinfo.
@@ -30,7 +30,7 @@
 
 
 //****************FUNCIONES ERRNO****************
-#include <errno.h>
+# include <errno.h>
 
 /*
  * errno: Variable global que contiene el código de error del sistema en la última llamada a una función.
@@ -39,7 +39,7 @@
 
 
 //****************FUNCIONES SYS/SOCKET****************
-#include <sys/socket.h>
+# include <sys/socket.h>
 /*
  * socketpair: Crea un par de sockets conectados entre sí.
  */
@@ -82,7 +82,7 @@
 
 
 //****************FUNCIONES ARPA/INET****************
-#include <arpa/inet.h>
+# include <arpa/inet.h>
 /*
  * htons: Convierte un número corto de host a formato de red (big-endian).
  */
@@ -105,12 +105,12 @@
 
 
 //****************FUNCIONES NETINET/IN****************
-#include <netinet/in.h>
+# include <netinet/in.h>
 // Definiciones relacionadas con direcciones y estructuras para redes.
 
 
 //****************FUNCIONES SYS/SELECT****************
-#include <sys/select.h>
+# include <sys/select.h>
 /*
  * select: Espera a que uno o más descriptores estén listos para una operación de I/O.
  */
@@ -118,7 +118,7 @@
 
 
 //****************FUNCIONES SYS/EPOLL****************
-#include <sys/epoll.h>
+# include <sys/epoll.h>
 /*
  * epoll_create: Crea un descriptor de epoll.
  */
@@ -136,7 +136,7 @@
 
 
 //****************FUNCIONES FCNTL****************
-#include <fcntl.h>
+# include <fcntl.h>
 
 /*
  * fcntl: Manipula los descriptores de archivo.
@@ -145,8 +145,8 @@
 
 
 //****************FUNCIONES SYS/TYPES, SYS/STAT****************
-#include <sys/types.h>
-#include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 /*
  * open: Abre un archivo y devuelve su descriptor.
  */
@@ -164,7 +164,7 @@
 
 
 //****************FUNCIONES SYS/EVENT****************
-# include <sys/event.h>
+//# include <sys/event.h>
 /*
  *Crea una cola de eventos que puede ser monitoreada.
  *Devuelve un descriptor de archivo que se usa para interactuar con el sistema de eventos
