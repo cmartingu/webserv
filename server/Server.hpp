@@ -11,7 +11,7 @@ class Server
 		std::string	root;
 		unsigned long	max_body_size;
 
-		std::string		index;//habra q ver para q
+		std::string		index;
 		bool			autoindex;
 		std::map<unsigned short, std::string> errorWebs;
 		struct sockaddr_in	server_address;
