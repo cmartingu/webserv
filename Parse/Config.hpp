@@ -1,6 +1,7 @@
 #pragma once
 
 # include "../webserv.hpp"
+// # include "../server/Server.hpp"
 
 class Config
 {
@@ -15,11 +16,13 @@ class Config
 			~Config();
 
 		//public methods
+			std::string	getConfFile(std::string const &defaultPath);
+			void	removeComments(std::string &content);
 			void	saveConfigs(std::string &configContent);
 			size_t	findStartPos(size_t start, std::string &configContent);
 			size_t	findEndPos(size_t start, std::string &configContent);
 
-
+		//print configs
 			void	printAllServerConfig();
 
 		//exceptions

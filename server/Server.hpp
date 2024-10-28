@@ -5,23 +5,23 @@
 class Server
 {
 	private:
-		//constructor
-			Server(void);
+		uint16_t	port;
+		in_addr_t	host;
+		std::string	serv_name;
+		std::string	root;
+		unsigned long	max_body_size;
 
-		//attributes
-			std::map<long, std::string>requests;
-			std::string		rootDirectory;
-			unsigned int	host;
-			int				port;
+		std::string		index;//habra q ver para q
+		bool			autoindex;
+		std::map<unsigned short, std::string> errorWebs;
+		struct sockaddr_in	server_address;
+		
 
 	public:
 		//Constructor & destructor
-			Server(std::string const &fileConfig);
+			Server();
 			Server(Server const &copy);
 			~Server(void);
-
-		//Assignment operator
-			Server const &operator=(Server const &copy);
 
 		//getters
 			int	const &getPort(void) const;

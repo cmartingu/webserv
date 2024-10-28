@@ -12,7 +12,8 @@
 
 NAME	=	webserv
 
-SRC		=	webserv.cpp
+SRC		=	webserv.cpp \
+			Parse/Config.cpp
 
 OBJS	=	$(SRC:.cpp=.o)
 
@@ -23,7 +24,7 @@ FLAGS	=	-Wall -Wextra -Werror -std=c++98
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(COMPILE) $(FLAGS) $(OBJS) -o zombie
+	$(COMPILE) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)
