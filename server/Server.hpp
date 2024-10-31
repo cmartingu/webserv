@@ -26,8 +26,12 @@ class Server //vector de servers en config
 
 		//public methods
 			void	tryErrorWebs();
+
 			void	tryLocation(Location &location) const;
 			bool	isValidHost(std::string hostName) const;
+
+			void	checkToken(std::string const &token);
+			bool	checkLocations() const;
 
 		//setters
 			void	setServerName(std::string const &server_name);
@@ -42,4 +46,15 @@ class Server //vector de servers en config
 			void	setAutoindex(std::string const &autoindex);
 
 		//getters
+			const std::string &getServerName();
+			const uint16_t &getPort();
+			const in_addr_t &getHost();
+			const size_t &getClientMaxBodySize();
+			const std::vector<Location> &getLocations();
+			const std::string &getRoot();
+			const std::map<short, std::string> &getErrorPages();
+			const std::string &getIndex();
+			const bool &getAutoindex();
+			const std::string &getPathErrorPage(short key);
+			const std::vector<Location>::iterator getLocationKey(std::string key);
 };
