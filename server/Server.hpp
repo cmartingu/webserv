@@ -2,6 +2,7 @@
 
 # include "../webserv.hpp"
 # include "../Location/Location.hpp"
+# include "../Parse/Config.hpp"
 
 class Server //vector de servers en config
 {
@@ -22,15 +23,15 @@ class Server //vector de servers en config
 		//Constructor & destructor
 			Server();
 			Server(Server const &copy);
-			~Server(void);
+			~Server();
 
 		//public methods
-			void	tryErrorWebs();
+			void	initErrorWebs();
 
 			void	tryLocation(Location &location) const;
 			bool	isValidHost(std::string hostName) const;
 
-			void	checkToken(std::string const &token);
+			void	endWithSemicolon(std::string const &token);
 			bool	checkLocations() const;
 
 		//setters
