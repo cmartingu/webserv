@@ -42,7 +42,3 @@ class Config
 					virtual ~ConfFileException() throw() {}
 			};
 };
-
-//Clean config file
-std::string	getConfFile(std::string const &defaultPath);
-void		removeComments(std::string &content);
