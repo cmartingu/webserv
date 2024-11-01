@@ -62,76 +62,127 @@ void	Server::tryLocation(Location &location) const
 {
 }
 
-bool	Server::isValidHost(std::string hostName) const
+bool	Server::isValidHost(std::string hostName) const //check if host is valid
 {
+	struct sockaddr_in sockaddr;
+	if (inet_pton(AF_INET, hostName.c_str(), &(sockaddr.sin_addr)))
+		return true;
+	return false;
 }
 
-void	Server::endWithSemicolon(std::string const &token)//comprueba que acaba en ;
+void	Server::endWithSemicolon(std::string &token)//comprueba que acaba en ; y lo elimina
 {
 	size_t	pos = token.find(';');
 	if (pos == std::string::npos)
 		throw Config::ConfFileException("Token \"" + token + "\" must end with ;");
 
-	for (int i=pos; i < token.size(); i++)
+	for (int i = pos + 1; i < token.size(); i++)
 	{
 		if (!isspace(token[i]))
 			throw Config::ConfFileException("Wrong token \"" + token + "\"");
 	}
+	token.erase(pos);
 }
 
 bool	Server::checkLocations() const
 {
 }
 
+int		Server::typeOfPath(std::string &path)
+{
+	struct stat	buffer;
+	int			result;
+	
+	result = stat(path.c_str(), &buffer);
+	if (result == 0)
+	{
+		if (buffer.st_mode & S_IFREG) //archivo
+			return 1;
+		else if (buffer.st_mode & S_IFDIR) //directorio
+			return 2;
+		else
+			return 3;
+	}
+	else
+		return -1;
+}
+
 /****************************SETTERS*****************************/
 
-void	Server::setServerName(std::string const &server_name)
+void	Server::setServerName(std::string &server_name)
 {
 	endWithSemicolon(server_name);
 	this->serv_name = server_name;
 }
 
-void	setHost(std::string const &host)
+void	Server::setHost(std::string &host)
+{
+	endWithSemicolon(host);
+	if (host == "localhost")
+		host = "127.0.0.1";
+	if (!isValidHost(host))
+		throw Config::ConfFileException("Invalid host \"" + host + "\"");
+	this->host = inet_addr(host.data());
+}
+
+void	Server::setRoot(std::string &root)
+{
+	endWithSemicolon(root);
+
+	if (typeOfPath(root) == 2)
+		this->root = root;
+	else
+	{
+		char dir[1024];
+		getcwd(dir, 1024);
+		std::string finalRoot = dir + root;
+		if (typeOfPath(finalRoot) != 2)
+			throw Config::ConfFileException("Invalid root \"" + root + "\"");
+		this->root = finalRoot;
+	}
+}
+
+void	Server::setFd(int &fd)
+{
+	this->listen_fd = fd;
+}
+
+void	Server::setPort(std::string &port)
+{
+	endWithSemicolon(port);
+	
+	for (int i=0; i < port.length(); i++)
+	{
+		if (!isdigit(port[i]))
+			throw Config::ConfFileException("Invalid port: \"" + port + "\"");
+	}
+	int	finalPort = stoi(port);
+	if (finalPort < 1 || finalPort > 65636)
+		throw Config::ConfFileException("Invalid port: \"" + port + "\"");
+	this->port = (uint16_t)finalPort;
+}
+
+void	Server::setClientMaxBodySize(std::string &maxBodySize)
 {
 
 }
 
-void	setRoot(std::string const &root)
+void	Server::setErrorPages(std::vector<std::string> &error_webs)
 {
 
 }
 
-void	setFd(int const &fd)
+void	Server::setIndex(std::string &index)
 {
 
 }
 
-void	setPort(std::string const &port)
+void	Server::setLocation(std::string &name, std::vector<std::string> &args)
 {
 
 }
 
-void	setClientMaxBodySize(std::string const &maxBodySize)
-{
-
-}
-
-void	setErrorPages(std::vector<std::string> const &error_webs)
-{
-
-}
-
-void	setIndex(std::string const &index)
-{
-
-}
-
-void	setLocation(std::string const &name, std::vector<std::string> const &args)
-{
-
-}
-
-void	setAutoindex(std::string const &autoindex)
+void	Server::setAutoindex(std::string &autoindex)
 {
 
 }

@@ -31,20 +31,22 @@ class Server //vector de servers en config
 			void	tryLocation(Location &location) const;
 			bool	isValidHost(std::string hostName) const;
 
-			void	endWithSemicolon(std::string const &token);
+			void	endWithSemicolon(std::string &token);
 			bool	checkLocations() const;
 
+			int		typeOfPath(std::string &path);
+
 		//setters
-			void	setServerName(std::string const &server_name);
-			void	setHost(std::string const &host);
-			void	setRoot(std::string const &root);
-			void	setFd(int const &fd);
-			void	setPort(std::string const &port);
-			void	setClientMaxBodySize(std::string const &maxBodySize);
-			void	setErrorPages(std::vector<std::string> const &error_webs);
-			void	setIndex(std::string const &index);
-			void	setLocation(std::string const &name, std::vector<std::string> const &args);
-			void	setAutoindex(std::string const &autoindex);
+			void	setServerName(std::string &server_name);
+			void	setHost(std::string &host);
+			void	setRoot(std::string &root);
+			void	setFd(int &fd);
+			void	setPort(std::string &port);
+			void	setClientMaxBodySize(std::string &maxBodySize);
+			void	setErrorPages(std::vector<std::string> &error_webs);
+			void	setIndex(std::string &index);
+			void	setLocation(std::string &name, std::vector<std::string> &args);
+			void	setAutoindex(std::string &autoindex);
 
 		//getters
 			const std::string &getServerName();
