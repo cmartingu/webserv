@@ -12,14 +12,18 @@
 
 NAME	=	webserv
 
-SRC		=	webserv.cpp \
-			Parse/Config.cpp
+SRC		=	ParseConfigFile/Server/Server.cpp \
+			ParseConfigFile/Config.cpp \
+			ParseConfigFile/Location/Location.cpp \
+			ParseResponse/Client.cpp \
+			ParseResponse/HttpRequest.cpp \
+			webserv.cpp
 
 OBJS	=	$(SRC:.cpp=.o)
 
 COMPILE	=	c++
 
-FLAGS	=	-Wall -Wextra -Werror -std=c++98
+FLAGS	=	-Wall -Wextra -Werror -std=c++98 -g3
 
 all: $(NAME)
 

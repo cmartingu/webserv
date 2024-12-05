@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Archivo</title>
+</head>
+<body>
+    <h1>Subir Archivo</h1>
+    <form action="http://localhost:8080/uploads/uploads.html" method="POST" enctype="multipart/form-data">
+        <label for="file">Selecciona un archivo:</label>
+        <input type="file" id="file" name="file" required>
+        <br><br>
+        <button type="submit">Subir</button>
+    </form>
+    <br>
+    <!-- Boton para el delete-->
+    <button id="deleteButton" type="button">Eliminar Archivos</button>
+    <script>
+        document.getElementById('deleteButton').addEventListener('click', function()
+        {
+            // Crear una solicitud DELETE
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", "http://localhost:8080/uploads/uploads.html", true);
+            xhr.send();
+        });
+    </script>
+</body>
+</html>

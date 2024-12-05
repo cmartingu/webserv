@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Archivo</title>
+</head>
+<body>
+    <h1>Subir Archivo</h1>
+    <form action="http://localhost:8080/upload" method="POST" enctype="multipart/form-data">
+        <label for="file">Selecciona un archivo:</label>
+        <input type="file" id="file" name="file" required>
+        <br><br>
+        <button type="submit">Subir</button>
+    </form>
+
+    <!-- Mensaje de confirmación o error (opcional) -->
+    <div id="mensaje" style="margin-top: 20px;">
+        <!-- Aquí podrías mostrar un mensaje después de la carga del archivo -->
+    </div>
+</body>
+</html>

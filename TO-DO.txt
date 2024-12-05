@@ -1,0 +1,11 @@
+(WIP)   1. Instalar siege con homebrew y probarlo en todas(alguna(una)) las location
+	- update: **Hay que buscar en el campus que ordenadores tienen siege (preguntar o ir uno por uno)**
+
+(ME DA IGUAL) 2. Codigos repasar que matchean con el error.
+				¿Meter en el server errorwebs los htmls 
+				y llamar a server.getErrorWeb() para cada setResponse()?
+				(Ejemplo comentado en Server.cpp/initerrorwebs)
+
+(PASS) 3. Subir archivos en la location que se suba.
+
+4. Verificar memory leaks al acabar(no tenemos de momento)

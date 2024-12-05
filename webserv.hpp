@@ -6,8 +6,10 @@
 # include <sstream>
 # include <fstream>
 # include <string>
+# include <cstring>
 # include <limits>
 # include <cstdio>
+# include <dirent.h>
 
 // CPP Containers
 # include <map>
@@ -29,6 +31,7 @@
 # include <limits.h>
 # include <errno.h>
 # include <dirent.h>
+# include <poll.h>
 
 // C System
 # include <sys/types.h>
@@ -41,3 +44,10 @@
 # include <sys/select.h>
 # include <arpa/inet.h>
 # include <netinet/in.h>
+
+# include "ParseConfigFile/Config.hpp"
+# include "ParseConfigFile/Server/Server.hpp"
+# include "ParseResponse/HttpRequest.hpp"
+# include "ParseResponse/Client.hpp"
+
+// void	startWebServer(Server &serv);
