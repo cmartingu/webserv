@@ -20,12 +20,6 @@ void	HttpRequest::setHttpReq(const std::string& rawRequest, bool second, int ct_
 	if (rawRequest.find("multipart/form-data") != std::string::npos && !second)
 	{
 		this->fragmented = true;
-		//std::istringstream iss(headers["Content-Length"]);
-		//int contentLength;
-		//iss >> contentLength;
-		//body.resize(contentLength);
-		//stream.read(&body[0], contentLength);
-		//std::cout << "Setting Body: " << body << std::endl;
 	}
 	else
 		this->fragmented = false;
@@ -211,7 +205,7 @@ bool HttpRequest::properBodySize()
 		std::istringstream line(headers["Content-Length"]);
 		unsigned long aux;
 		line >> aux;
-		std::cout << "Server Body Size:" << server->getClientMaxBodySize() << "Request Content Lenght: " << aux << std::endl;
+		//std::cout << "Server Body Size:" << server->getClientMaxBodySize() << "Request Content Lenght: " << aux << std::endl;
 		if (server->getClientMaxBodySize() <= aux)
 			return false;
 	}

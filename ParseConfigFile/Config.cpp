@@ -348,7 +348,10 @@ void	Config::vectorToServer(std::vector<std::string> &content, Server &serv)
 	}
 	if (serv.getRoot().empty())
 	{
-		std::string auxRoot = getcwd(NULL, 0);
+		// std::string auxRoot = getcwd(NULL, 0);
+		char *cwd = getcwd(NULL, 0);
+		std::string auxRoot(cwd);
+		free(cwd);
 		serv.setRoot((auxRoot + ";").c_str());
 	}
 	if (serv.getServerName().empty())

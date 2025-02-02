@@ -104,7 +104,10 @@ void	Server::tryLocation(Location &location)//comrpobar si está bien configurad
 			std::string auxIndex = location.getRootLocation() + location.getPath() + "/" + location.getIndexLocation();
 			if (typeOfPath(auxIndex) != 1)
 			{
-				std::string rootPath = getcwd(NULL, 0);
+				// std::string rootPath = getcwd(NULL, 0);
+				char *cwd = getcwd(NULL, 0);
+				std::string rootPath(cwd);
+				free(cwd);
 				location.setRootLocation(rootPath);
 				auxIndex = rootPath + location.getPath() + "/" + location.getIndexLocation();
 			}
@@ -187,7 +190,9 @@ void	Server::endWithSemicolon(std::string &token)//comprueba que acaba en ; y lo
 
 void	Server::setDefaultErrorWebs()
 {
-	std::string aux404 = getcwd(NULL, 0);
+	char *cwd = getcwd(NULL, 0);
+	std::string aux404(cwd);
+	free(cwd);
 
 	if (this->errorWebs[403].empty())
 	{
@@ -237,8 +242,11 @@ void	Server::setRoot(std::string root)
 		this->root = root;
 	else
 	{
-		char dir[1024];
-		getcwd(dir, 1024);
+		// char dir[1024];
+		// getcwd(dir, 1024);
+		char *cwd = getcwd(NULL, 0);
+		std::string dir(cwd);
+		free(cwd);
 		std::string finalRoot = dir + root;
 		if (typeOfPath(finalRoot) != 2)
 			throw Config::ConfFileException("Invalid root \"" + root + "\"");
@@ -308,7 +316,10 @@ void	Server::setErrorPages(std::vector<std::string> error_webs)
 			throw Config::ConfFileException("Invalid error_page path: \"" + path + "\"");
 		if ((this->root).empty())
 		{
-			std::string auxRoot = getcwd(NULL, 0);
+			// std::string auxRoot = getcwd(NULL, 0);
+			char *cwd = getcwd(NULL, 0);
+			std::string auxRoot(cwd);
+			free(cwd);
 			this->setRoot((auxRoot + ";").c_str());
 		}
 		if (typeOfPath(this->root + path) != 1)
